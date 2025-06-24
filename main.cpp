@@ -26,7 +26,7 @@ void countLetters(char line[], LetterCount array[])
     while(charIndex < strlen(line)) {
         // skip non-char
         if (isalpha(line[charIndex])) {
-            targetIndex = (line[charIndex] >= 'A' && line[charIndex] <= 'Z') ? line[charIndex] % 65 : targetIndex = line[charIndex] % 97;
+            targetIndex = toupper(line[charIndex]) - 65;
             array[targetIndex].count += 1;
         }
 
@@ -42,8 +42,7 @@ bool compare(LetterCount a, LetterCount b)
 void printResult(LetterCount array[]) 
 {
     int loc = 0;
-    while (array[loc].count > 0 && loc < letterNum)
-    {
+    while (array[loc].count > 0 && loc < letterNum){
         printf("%c %d\n", array[loc].letter, array[loc].count);
         loc++;
     }
@@ -63,7 +62,7 @@ int main()
     scanf("%d", &lineNum);
     getchar();
 
-    while(scanf("%[^\n]", line) == 1 && lineCount < lineNum) {
+    while(scanf("%[^\n]", line) == 1 && lineCount < lineNum){
         countLetters(line, array);
         lineCount++;
         getchar();
